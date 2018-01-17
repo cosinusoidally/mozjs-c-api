@@ -95,4 +95,5 @@ Next run:
 sh ./mk-example
 ```
 
-You should now have an example program called `example`. And that's it.
+You should now have an example program called `example`. All being well the
+`example` program should work.
