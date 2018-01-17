@@ -12,8 +12,8 @@ link against. The purpose of this repo is to design and implement such an API.
 
 ## Current status
 
-This repo contains an absolutely minimal viable product (MVP) C API built on
-top of Spidermonkey 52 ESR.
+This repo currently contains an absolutely minimal viable product (MVP) C API
+built on top of Spidermonkey 52 ESR.
 
 When I say MVP I mean it. We have 3 functions (all return a status code with 0
 for success):
