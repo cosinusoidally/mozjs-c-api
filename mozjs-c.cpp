@@ -23,13 +23,13 @@ static JSClass global_class = {
     &global_ops
 };
 
-#define LJW extern "C" __attribute__ ((visibility ("default")))
+#define EXPORT_MOZJS_C extern "C" __attribute__ ((visibility ("default")))
 
 JSContext *cx;
 JS::PersistentRootedObject global;
 int lineno = 1;
 
-LJW int init(){
+EXPORT_MOZJS_C int init(){
     JS_Init();
     cx = JS_NewContext(8L * 1024 * 1024);
     if (!cx)
@@ -46,7 +46,7 @@ LJW int init(){
     return 0;
 }
 
-LJW int evaluate(const char * script)
+EXPORT_MOZJS_C int evaluate(const char * script)
 {
     JSAutoRequest ar(cx); 
     JS::RootedValue rval(cx);
@@ -64,7 +64,7 @@ LJW int evaluate(const char * script)
     return 0;
 }
 
-LJW int quit_js(){
+EXPORT_MOZJS_C int quit_js(){
     JS_DestroyContext(cx);
     JS_ShutDown();
     return 0;
