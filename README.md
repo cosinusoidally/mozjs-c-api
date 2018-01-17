@@ -49,6 +49,9 @@ https://archive.mozilla.org/pub/firefox/releases/52.5.3esr/SHA512SUMS
 https://archive.mozilla.org/pub/firefox/releases/52.5.3esr/SHA512SUMS.asc
 ```
 
+If you want, check the signatures (`gpg --verify` and then check the sha512sum
+of the source code is correct)
+
 Extract the tarball in to the directory `/opt/ff52esr-src/` ie
 
 ```
