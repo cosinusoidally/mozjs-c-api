@@ -43,6 +43,7 @@ EXPORT_MOZJS_C int mjs_init(){
         return 1;
     JSAutoCompartment ac(cx, global);
     JS_InitStandardClasses(cx, global);
+    JS_InitCTypesClass(cx, global);
     return 0;
 }
 
