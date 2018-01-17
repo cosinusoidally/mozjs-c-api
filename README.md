@@ -7,8 +7,8 @@ Spidermonkey currently has a large, complicated, poorly documented, continually
 evolving, C++ API, known as JSAPI. Whilst this approach to API design and
 implementation may work for Mozilla, it doesn't work well for me. I would like
 to be able to target a small, stable API. I would like to be able to generate a
-Spidermonkey shared library that has a stable ABI and and is trivially simple
-to link to. The purpose of this repo is to design and implement such an API.
+Spidermonkey shared library that has a stable ABI and is trivially simple to
+link against. The purpose of this repo is to design and implement such an API.
 
 ## Current status
 
