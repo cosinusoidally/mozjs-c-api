@@ -15,8 +15,8 @@ link against. The purpose of this repo is to design and implement such an API.
 This repo currently contains an absolutely minimal viable product (MVP) C API
 built on top of Spidermonkey 52 ESR.
 
-When I say MVP I mean it. We have 3 functions (all return a status code with 0
-for success):
+When I say MVP I really mean it. We only have 3 functions (all return a status
+code with 0 for success):
 
 * `int mjs_init(void)` initialise the VM
 * `int mjs_evaluate(const char * script)` run a script in the VM
