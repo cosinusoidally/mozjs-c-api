@@ -29,7 +29,7 @@ JSContext *cx;
 JS::PersistentRootedObject global;
 int lineno = 1;
 
-EXPORT_MOZJS_C int init(){
+EXPORT_MOZJS_C int mjs_init(){
     JS_Init();
     cx = JS_NewContext(8L * 1024 * 1024);
     if (!cx)
@@ -46,7 +46,7 @@ EXPORT_MOZJS_C int init(){
     return 0;
 }
 
-EXPORT_MOZJS_C int evaluate(const char * script)
+EXPORT_MOZJS_C int mjs_evaluate(const char * script)
 {
     JSAutoRequest ar(cx); 
     JS::RootedValue rval(cx);
@@ -64,7 +64,7 @@ EXPORT_MOZJS_C int evaluate(const char * script)
     return 0;
 }
 
-EXPORT_MOZJS_C int quit_js(){
+EXPORT_MOZJS_C int mjs_shutdown(){
     JS_DestroyContext(cx);
     JS_ShutDown();
     return 0;

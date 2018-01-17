@@ -1,1 +1,1 @@
-int evaluate(const char * script);
+int mjs_evaluate(const char * script);
