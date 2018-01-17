@@ -16,18 +16,19 @@ This repo contains an absolutely minimal viable product (MVP) C API built on
 top of Spidermonkey 52 ESR.
 
 When I say MVP I mean it. We have 3 functions (all return a status code with 0
-for sucess):
+for success):
 
 * `int mjs_init(void)` initialise the VM
 * `int mjs_evaluate(const char * script)` run a script in the VM
 * `int mjs_shutdown(void)`  shutdown the VM
 
 To use the API include `mozjs-c.h` and dynamically link to libmozjs-c.so (see
-`main.c` and `mk-example`).
+`main.c` and `mk-example` for an exaple).
 
 ## Building
 
-I build the code on a Debian Wheezy i386 root filesystem. First grab dependencies:
+I build the code on a Debian Wheezy i386 root filesystem (`x86_64` should work too).
+First grab dependencies:
 
 ```
 apt-get build-dep firefox
