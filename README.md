@@ -23,7 +23,7 @@ code with 0 for success):
 * `int mjs_shutdown(void)`  shutdown the VM
 
 To use the API include `mozjs-c.h` and dynamically link to libmozjs-c.so (see
-`main.c` and `mk-example` for an exaple).
+`example.c` and `mk-example` for an exaple).
 
 ## Building
 
@@ -88,6 +88,9 @@ sh ./mk-shared
 
 If all is well you should now have a `libmozjs-c.so` binary in the current directory.
 Add the current dir to your `LD_LIBRARY_PATH`
+
+You'll notice that `libmozjs-c.so` is huge (about 170MiB on x86). You can
+`strip` the file to bring it down to about 24MiB.
 
 Next run:
 

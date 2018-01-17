@@ -1,1 +1,1 @@
-gcc main.c -L. -lmozjs-c -o example
+gcc example.c -L. -lmozjs-c -o example
