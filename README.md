@@ -23,7 +23,7 @@ code with 0 for success):
 * `int mjs_shutdown(void)`  shutdown the VM
 
 To use the API include `mozjs-c.h` and dynamically link to libmozjs-c.so (see
-`example.c` and `mk-example` for an exaple).
+`example.c` and `mk-example` for an example).
 
 ## Building
 
