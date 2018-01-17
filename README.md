@@ -18,9 +18,9 @@ top of Spidermonkey 52 ESR.
 When I say MVP I mean it. We have 3 functions (all return a status code with 0
 for sucess):
 
-`int mjs_init(void)` initialise the VM
-`int mjs_evaluate(const char * script)` run a script in the VM
-`int mjs_shutdown(void)`  shutdown the VM
+* `int mjs_init(void)` initialise the VM
+* `int mjs_evaluate(const char * script)` run a script in the VM
+* `int mjs_shutdown(void)`  shutdown the VM
 
 To use the API include `mozjs-c.h` and dynamically link to libmozjs-c.so (see
 `main.c` and `mk-example`).
