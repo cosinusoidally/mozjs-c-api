@@ -12,6 +12,13 @@ link against. The purpose of this repo is to design and implement such an API.
 
 ## Current status
 
+*Note this code is likely buggy. It does appear to build and run, but there is
+likely subtle issues. In particular I think symbol visibility is currently
+incorrect, and I think the code currently dynamically links to zlib (update: I
+think I've fixed linking of zlib, but I might be doing it a bit wrong). The
+code should statically link to zlib if the generated shared library binary is
+to be portable*
+
 This repo currently contains an absolutely minimal viable product (MVP) C API
 built on top of Spidermonkey 52 ESR.
 
@@ -68,7 +75,7 @@ Next step is to build Spidermonkey:
 
 ```
 cd /opt/ff52esr-src/firefox-52.5.3esr/js/src/
-./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes
+./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib
 make -j 2 # or however many cores you want to use
 ```
 I want jsctypes (this will allow me to host a load of low level code in JS
