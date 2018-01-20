@@ -71,8 +71,25 @@ Next step is to build Spidermonkey:
 cd /opt/ff52esr-src/js/src/
 ./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib --disable-jemalloc
 make -j 2 # or however many cores you want to use
-make install DESTDIR=/opt/js52/
 ```
+
+Should now have sm shared lib, but will need to link to mozglue with this
+
+```
+cd 
+```
+
+make install
+
+```
+make install DESTDIR=/opt/js52/ # again, you can set this to wherever, but you may need to tweak my build scripts
+```
+
+rename `libjs_shared.ajs` to `libjs_shared.a`
+
+copy over nspr libs
+
+copy over libmozglue.a
 
 You should now have Spidermonkey built
 
