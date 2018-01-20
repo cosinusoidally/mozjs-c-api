@@ -72,43 +72,56 @@ cd /opt/ff52esr-src/js/src/
 ./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib --disable-jemalloc
 make -j 2 # or however many cores you want to use
 ```
+I want jsctypes (this will allow me to host a load of low level code in JS
+rather than having to write a bunch of C/C++), which is why I have to also
+enable the use of nspr.
 
-Should now have sm shared lib, but will need to link to mozglue with this
-
-```
-cd 
-```
-
-make install
+Then install
 
 ```
 make install DESTDIR=/opt/js52/ # again, you can set this to wherever, but you may need to tweak my build scripts
 ```
 
 rename `libjs_shared.ajs` to `libjs_shared.a`
-
-copy over nspr libs
-
+```
+mv /opt/js52//usr/local/lib/libjs_static.ajs /opt/js52//usr/local/lib/libjs_static.a
+```
 copy over libmozglue.a
+```
+cp mozglue/build/libmozglue.a /opt/js52/usr/local/lib/
+```
+copy over nspr libs
+```
+cp dist/bin/libnspr4.so dist/bin/libplc4.so dist/bin/libplds4.so /opt/js52/usr/local/lib/
+```
 
-You should now have Spidermonkey built
+You should now have Spidermonkey built but `libmozjs-52.so` will segfault, need to relink it with mozglue
+```
+./fix-libmozjs-so
+```
 
-I want jsctypes (this will allow me to host a load of low level code in JS
-rather than having to write a bunch of C/C++), which is why I have to also
-enable the use of nspr.
+```
+cp dist/bin/libmozjs-52.so /opt/js52/usr/local/lib/
+```
 
-Once Spidermonkey has built you will need to copy out the Spidermonkey and nspr libraries into
-another directory. Grab libmozjs-libnspr4.so, libplc4.so, and libplds4.so from
-/opt/ff52esr-src/js/src/dist/bin and drop in to a convenient
-location. Then add them to your `LD_LIBRARY_PATH`
+set up pkg-config
+
+```
+rm -r rm -r /opt/js52/usr/local/lib/pkgconfig/
+cp -r /opt/mozjs-c-api/pkgconfig /opt/js52/usr/local/lib/
+```
+
+set up `LD_LIBRARY_PATH`
+```
+export LD_LIBRARY_PATH=/opt/js52/usr/local/lib/:$LD_LIBRARY_PATH
+```
+
 
 We are now ready to build `libmozjs-c.so`. Go in to `mozjs-c-api` and run:
 
 ```
 sh ./mk-shared-shared
 ```
-
-
 
 If all is well you should now have a `libmozjs-c.so` binary in the current directory.
 Add the current dir to your `LD_LIBRARY_PATH`

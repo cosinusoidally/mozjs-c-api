@@ -1,0 +1,1 @@
+g++ -o hello -std=c++11 -include /opt/js52/usr/local/include/mozjs-52/js/RequiredDefines.h -I/opt/js52/usr/local/include/mozjs-52 -I/opt/js52/usr/local/include/nspr hello.cpp -L/opt/js52/usr/local/lib -Wl,--whole-archive -lmozglue -Wl,-no-whole-archive -ljs_static -lnspr4

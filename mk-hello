@@ -1,0 +1,1 @@
+g++ -o hello -std=c++11 `pkg-config --cflags mozjs-52` hello.cpp `pkg-config --libs mozjs-52`
