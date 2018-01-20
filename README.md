@@ -35,11 +35,11 @@ To use the API include `mozjs-c.h` and dynamically link to libmozjs-c.so (see
 
 ## Building
 
-I build the code on a Debian Wheezy i386 root filesystem (`x86_64` should work too).
+I build the code on a Debian Wheezy root filesystem (both `i386` and `amd64` work).
 First grab dependencies:
 
 ```
-apt-get build-dep firefox
+apt-get build-dep firefox-esr
 ```
 
 This will install `gcc-mozilla` (we need that specific version of GCC to compile).
@@ -76,7 +76,7 @@ Next step is to build Spidermonkey:
 
 ```
 cd /opt/ff52esr-src/firefox-52.5.3esr/js/src/
-./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib
+./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib --disable-jemalloc
 make -j 2 # or however many cores you want to use
 ```
 I want jsctypes (this will allow me to host a load of low level code in JS
