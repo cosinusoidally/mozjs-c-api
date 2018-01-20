@@ -13,13 +13,6 @@ this repo is to design and implement such an API.
 
 ## Current status
 
-*Note this code is likely buggy. It does appear to build and run, but there is
-likely subtle issues. In particular I think symbol visibility is currently
-incorrect, and I think the code currently dynamically links to zlib (update: I
-think I've fixed linking of zlib, but I might be doing it a bit wrong). The
-code should statically link to zlib if the generated shared library binary is
-to be portable*
-
 This repo currently contains an absolutely minimal viable product (MVP) C API
 built on top of Spidermonkey 52 ESR.
 
@@ -63,11 +56,11 @@ of the source code is correct)
 Extract the tarball in to the directory `/opt/ff52esr-src/` ie
 
 ```
-mkdir /opt/ff52esr-src/
 tar xvf $wherever/firefox-52.5.3esr.source.tar.xz
+mv firefox-52.5.3esr /opt/ff52esr-src/
 ```
 
-So you now should have your source in `/opt/ff52esr-src/firefox-52.5.3esr`
+So you now should have your source in `/opt/ff52esr-src/`
 
 You can put the source wherever you want, but you will need to tweak my build
 script if you put it anywhere other than the above location.
@@ -75,24 +68,30 @@ script if you put it anywhere other than the above location.
 Next step is to build Spidermonkey:
 
 ```
-cd /opt/ff52esr-src/firefox-52.5.3esr/js/src/
+cd /opt/ff52esr-src/js/src/
 ./configure --enable-release --enable-nspr-build --enable-stdcxx-compat --enable-ctypes --without-system-zlib --disable-jemalloc
 make -j 2 # or however many cores you want to use
+make install DESTDIR=/opt/js52/
 ```
+
+You should now have Spidermonkey built
+
 I want jsctypes (this will allow me to host a load of low level code in JS
 rather than having to write a bunch of C/C++), which is why I have to also
 enable the use of nspr.
 
-Once Spidermonkey has built you will need to copy out the nspr libraries into
-another directory. Grab libnspr4.so, libplc4.so, and libplds4.so from
-/opt/ff52esr-src/firefox-52.5.3esr/js/src/dist/bin and drop in to a convenient
+Once Spidermonkey has built you will need to copy out the Spidermonkey and nspr libraries into
+another directory. Grab libmozjs-libnspr4.so, libplc4.so, and libplds4.so from
+/opt/ff52esr-src/js/src/dist/bin and drop in to a convenient
 location. Then add them to your `LD_LIBRARY_PATH`
 
 We are now ready to build `libmozjs-c.so`. Go in to `mozjs-c-api` and run:
 
 ```
-sh ./mk-shared
+sh ./mk-shared-shared
 ```
+
+
 
 If all is well you should now have a `libmozjs-c.so` binary in the current directory.
 Add the current dir to your `LD_LIBRARY_PATH`
