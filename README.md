@@ -97,10 +97,7 @@ cp dist/bin/libnspr4.so dist/bin/libplc4.so dist/bin/libplds4.so /opt/js52/usr/l
 
 You should now have Spidermonkey built but `libmozjs-52.so` will segfault, need to relink it with mozglue
 ```
-./fix-libmozjs-so
-```
-
-```
+sh $your-mozjs-c-dir./fix-libmozjs-so
 cp dist/bin/libmozjs-52.so /opt/js52/usr/local/lib/
 ```
 
