@@ -1,3 +1,4 @@
 rm libmozjs-c.so
 rm mozjs-c.o
 rm example
+rm hello

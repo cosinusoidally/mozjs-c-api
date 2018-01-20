@@ -1,0 +1,1 @@
+g++ -Wl,--version-script=./version-script -fPIC -shared -o libmozjs-c.so -std=c++11 `pkg-config --cflags mozjs-52` mozjs-c.cpp `pkg-config --libs mozjs-52`

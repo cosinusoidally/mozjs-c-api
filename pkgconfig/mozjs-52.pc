@@ -1,0 +1,11 @@
+prefix=/opt/js52/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SpiderMonkey 52.5.3
+Description: The Mozilla library for JavaScript
+Version: 52.5.3
+Requires.private: nspr
+Libs: -L${libdir} -lmozjs-52
+Cflags: -include ${includedir}/mozjs-52/js/RequiredDefines.h -I${includedir}/mozjs-52
