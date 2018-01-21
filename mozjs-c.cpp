@@ -36,12 +36,14 @@ EXPORT_MOZJS_C int mjs_init(){
         return 1;
     if (!JS::InitSelfHostedCode(cx))
         return 1;
-    JSAutoRequest ar(cx); // In practice, you would want to exit this any
+//    JSAutoRequest ar(cx);
+    JS_BeginRequest(cx);
     JS::CompartmentOptions options;
     global.init(cx, JS_NewGlobalObject(cx, &global_class, nullptr, JS::FireOnNewGlobalHook, options));
     if (!global)
         return 1;
-    JSAutoCompartment ac(cx, global);
+//    JSAutoCompartment ac(cx, global);
+    JS_EnterCompartment(cx, global);
     JS_InitStandardClasses(cx, global);
     JS_InitCTypesClass(cx, global);
     return 0;
@@ -49,9 +51,9 @@ EXPORT_MOZJS_C int mjs_init(){
 
 EXPORT_MOZJS_C int mjs_evaluate(const char * script)
 {
-    JSAutoRequest ar(cx); 
+//    JSAutoRequest ar(cx);
     JS::RootedValue rval(cx);
-    JSAutoCompartment ac(cx, global);
+//    JSAutoCompartment ac(cx, global);
 
     const char *filename = "noname";
     JS::CompileOptions opts(cx);
@@ -66,6 +68,8 @@ EXPORT_MOZJS_C int mjs_evaluate(const char * script)
 }
 
 EXPORT_MOZJS_C int mjs_shutdown(){
+    JS_LeaveCompartment(cx, 0);
+    JS_EndRequest(cx);
     JS_DestroyContext(cx);
     JS_ShutDown();
     return 0;
