@@ -1,5 +1,41 @@
 Building
 
+Note when I say SM I mean Spidermonkey (I was getting bored of typing
+Spidermonkey over and over).
+
+Initial building is a slightly fiddly manual process atm. The plan it to
+eventually turn this file in to a build script that will automate much of this
+process.
+
+Note there are 3 build variants for libmozjs-c.so
+
+* mk-shared-shared : This creates a libmozjs-c.so that is dynamically linked to
+  libmozjs-52.so . This is the version that builds the fastest (about 3.5
+  seconds on my dog slow machine, if you have a decent machine it will be more
+  like 1s).
+* mk-shared-static : This creates a libmozjs-c.so that is statically
+  linked to libjs_static.a (the static library vesion of SM). This takes about
+  20s to build on my machine, on a fast machine you are looking at about 5s.
+* mk-shared-static-old : This does the same as mk-shared-static, but it uses
+  the same build commands as the offical jsshell binary (except the official
+  jsshell binary is not a shared library, it is an executable that is
+  statically linked to SM).
+
+The reasons for 3 variants are as follows:
+
+mk-shared-shared this version is good for development, but sometimes the SM
+developers forget to expose some public JSAPI symbols to libmozjs-52.so .
+If that occurs you must either fix the SM source to expose those symbols or
+statically link to SM. This is what mk-shared-static is for. The next issue is
+sometimes important APIs are not exposed to JSAPI. In that case you can use
+mk-shared-static-old (which can access all the private SM APIs).
+
+mk-shared-static is probably best for final deployment. That way you can
+distribute a single shared library (libmozjs-c.so) that only exposes the C API.
+Note you must also deploy nspr alongside libmozjs-c.so regardless of version.
+
+Build steps:
+
 I build the code on a Debian Wheezy root filesystem (both i386 and amd64 work).
 First grab dependencies:
 
