@@ -24,11 +24,11 @@ Note there are 3 build variants for libmozjs-c.so
 The reasons for 3 variants are as follows:
 
 mk-shared-shared this version is good for development, but sometimes the SM
-developers forget to expose some public JSAPI symbols to libmozjs-52.so .
-If that occurs you must either fix the SM source to expose those symbols or
+developers forget to expose some public JSAPI symbols to libmozjs-52.so .  If
+that occurs you must either fix the SM source to expose those symbols or
 statically link to SM. This is what mk-shared-static is for. The next issue is
-sometimes important APIs are not exposed to JSAPI. In that case you can use
-mk-shared-static-old (which can access all the private SM APIs).
+sometimes important APIs are not exposed to the public JSAPI. In that case you
+can use mk-shared-static-old (which can access all the private SM APIs).
 
 mk-shared-static is probably best for final deployment. That way you can
 distribute a single shared library (libmozjs-c.so) that only exposes the C API.
