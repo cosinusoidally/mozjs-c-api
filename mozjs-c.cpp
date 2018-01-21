@@ -1,3 +1,16 @@
+
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// The initial code was derived from:
+// https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/How_to_embed_the_JavaScript_engine
+// (ie a Hello World embedding example);
+
+// If that is a problem, it wouldn't be too much trouble to rewrite basing on
+// https://dxr.mozilla.org/mozilla-esr52/source/js/src/jsapi-tests/tests.cpp
+// (ie basing the code on MPL code in the SpiderMonkey source tree)
+
 #include "jsapi.h"
 #include "js/Initialization.h"
 
