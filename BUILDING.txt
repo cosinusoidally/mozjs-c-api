@@ -56,14 +56,14 @@ copy over nspr libs
 
 cp dist/bin/libnspr4.so dist/bin/libplc4.so dist/bin/libplds4.so /opt/js52/usr/local/lib/
 
-You should now have Spidermonkey built but libmozjs-52.so will segfault, need to relink it with mozglue
+You should now have Spidermonkey built but libmozjs-52.so will segfault, we must link it with mozglue
 
-sh $your-mozjs-c-dir./fix-libmozjs-so
+sh $your-mozjs-c-dir/fix-libmozjs-so
 cp dist/bin/libmozjs-52.so /opt/js52/usr/local/lib/
 
 set up pkg-config
 
-rm -r rm -r /opt/js52/usr/local/lib/pkgconfig/
+rm -r /opt/js52/usr/local/lib/pkgconfig/
 cp -r /opt/mozjs-c-api/pkgconfig /opt/js52/usr/local/lib/
 
 set up LD_LIBRARY_PATH
@@ -77,8 +77,10 @@ sh ./mk-shared-shared
 If all is well you should now have a libmozjs-c.so binary in the current directory.
 Add the current dir to your LD_LIBRARY_PATH
 
-You'll notice that libmozjs-c.so is huge (about 170MiB on x86). You can
-use 'strip' to bring it down to about 24MiB.
+If you happen to build the version of libmozjs-c.so statically linked to
+libmozjs-52.so (by using sh ./mk-shared-static) you'll notice that
+libmozjs-c.so is huge (about 170MiB on x86). You can use 'strip' to bring it
+down to about 24MiB.
 
 Next run:
 
