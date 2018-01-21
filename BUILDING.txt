@@ -3,7 +3,7 @@ Building
 Note when I say SM I mean Spidermonkey (I was getting bored of typing
 Spidermonkey over and over).
 
-Initial building is a slightly fiddly manual process atm. The plan it to
+Initial building is a slightly fiddly manual process right now. The plan it to
 eventually turn this file in to a build script that will automate much of this
 process.
 
